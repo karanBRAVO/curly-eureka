@@ -17,7 +17,6 @@ model = Qwen2VLForConditionalGeneration.from_pretrained(
     "Qwen/Qwen2-VL-7B-Instruct",
     torch_dtype="auto",
     device_map="auto",
-    load_in_8bit=True,
 )
 
 processor = AutoProcessor.from_pretrained(
