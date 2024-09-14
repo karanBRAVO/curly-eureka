@@ -28,6 +28,48 @@ print(df)
 test_images = df['image_link'].to_list()
 total_images = 2
 
+# prompt = """
+# Analyze this image and extract the following specifications. Provide the output in a JSON-like format with key-value pairs. Use the exact keys specified below. Include the unit in the value string. If a specification is not visible or applicable, use 'N/A' as the value.
+
+# {
+#     weight:
+#     height:
+#     length:
+#     width:
+#     depth:
+#     volume:
+#     voltage:
+#     wattage:
+# }
+
+# Only include specifications directly observable in the image. give output in JSON-like structure.
+# """
+
+prompt = """
+Analyze the provided image and extract any available information about the following properties:
+
+    width
+    height
+    depth
+    volume
+    wattage
+    weight
+    weight recommendation
+
+For each property that is present in the image, provide the value and unit of measurement. If a property is not visible or applicable to the item in the image, omit it from your response.
+
+Present your findings as key-value pairs in the following format:
+
+property: value unit
+
+For example:
+width: 10 cm
+height: 5 inches
+weight: 2.5 kg
+
+Only include properties that you can confidently extract from the information given in the image. Do not make assumptions or provide estimates for missing data.
+"""
+
 for i in range(total_images):
     img_name = get_image_name_from_url(test_images[i])
     img_path = os.path.normpath(os.path.join(test_img_dir_path, img_name))
@@ -36,23 +78,6 @@ for i in range(total_images):
         print(f"[!] {img_path} Not found")
     else:
         print(img_path)
-
-        prompt = """
-Analyze this image and extract the following specifications. Provide the output in a JSON-like format with key-value pairs. Use the exact keys specified below. Include the unit in the value string. If a specification is not visible or applicable, use 'N/A' as the value.
-
-{
-    weight:
-    height:
-    length:
-    width:
-    depth:
-    volume:
-    voltage:
-    wattage:
-}
-
-Only include specifications directly observable in the image. give output in JSON-like structure.
-"""
 
         messages = [
             {
