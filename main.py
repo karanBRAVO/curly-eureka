@@ -46,28 +46,23 @@ total_images = 2
 # """
 
 prompt = """
-Analyze the provided image and extract any available information about the following properties:
+Please analyze the image and provide a detailed list of all measurable properties and specifications shown, including but not limited to:
 
-    width
-    height
-    depth
-    volume
-    wattage
-    weight
-    weight recommendation
+{
+length
+width
+height
+depth
+weight
+volume
+wattage
+maximum_weight_recommendation
+voltage
+}
+Any numerical values or measurements displayed
+Any text or labels visible
 
-For each property that is present in the image, provide the value and unit of measurement. If a property is not visible or applicable to the item in the image, omit it from your response.
-
-Present your findings as key-value pairs in the following format:
-
-property: value unit
-
-For example:
-width: 10 cm
-height: 5 inches
-weight: 2.5 kg
-
-Only include properties that you can confidently extract from the information given in the image. Do not make assumptions or provide estimates for missing data.
+Please list each property with its corresponding value and unit of measurement where applicable. If any standard properties like voltage or wattage are not depicted, simply note that they are not shown in the image. Provide the output in a JSON-like format with key-value pairs. Use the exact keys specified below. Include the unit in the value string. If a specification is not visible or applicable, use 'N/A' as the value.
 """
 
 for i in range(total_images):
