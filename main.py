@@ -2,6 +2,7 @@ from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
 from qwen_vl_utils import process_vision_info
 import pandas as pd
 import os
+from PIL import Image
 
 dataset_dir_path = "./dataset"
 test_file_name = "test.csv"
@@ -28,9 +29,7 @@ print(df)
 test_images = df['image_link'].to_list()
 total_images = 2
 
-prompt = """
-Analyze this image and answer the following question.
-what is the width?
+prompt = """Extract product details such as weight, voltage, width, height, volume, depth, and wattage from the image. If any detail is not present, indicate 'NA'. Output format: JSON
 """
 
 for i in range(total_images):
@@ -40,6 +39,9 @@ for i in range(total_images):
     if not os.path.exists(img_path):
         print(f"[!] {img_path} Not found")
     else:
+        with Image.open(img_path) as img:
+            print(f"Image loaded successfully: {img_path}")
+            print(f"Image dimensions: {img.size}")
         print(img_path)
 
         messages = [
