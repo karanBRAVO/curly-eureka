@@ -28,43 +28,9 @@ print(df)
 test_images = df['image_link'].to_list()
 total_images = 2
 
-# prompt = """
-# Analyze this image and extract the following specifications. Provide the output in a JSON-like format with key-value pairs. Use the exact keys specified below. Include the unit in the value string. If a specification is not visible or applicable, use 'N/A' as the value.
-
-# {
-#     weight:
-#     height:
-#     length:
-#     width:
-#     depth:
-#     volume:
-#     voltage:
-#     wattage:
-# }
-
-# Only include specifications directly observable in the image. give output in JSON-like structure.
-# """
-
 prompt = """
-Please analyze the image of the product and provide a detailed list of all measurable properties and specifications shown, 
-including but not limited to:
-
-{
-  width (units cm)
-  height (units cm)
-  depth (units cm)
-  weight (units g)
-  volume (units ml)
-  wattage (units w)
-  maximum_weight_recommendation (units g)
-  voltage (units V)
-}
-
-Please use the exact keys specified above. For each property, 
-provide the value with the unit in parentheses (e.g., "width": "30 cm"). 
-If a specification is not visible or applicable, use "N/A" as the value.
-
-Provide the output in a JSON-like format with key-value pairs.
+Analyze this image and answer the following question.
+what is the width?
 """
 
 for i in range(total_images):
