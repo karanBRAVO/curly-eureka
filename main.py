@@ -78,7 +78,7 @@ for i in range(total_images):
 
         inputs = inputs.to("cuda")
 
-        generated_ids = model.generate(**inputs, max_new_tokens=128)
+        generated_ids = model.generate(**inputs, max_new_tokens=512, eos_token_id=processor.tokenizer.eos_token_id, temperature=0.0, do_sample=False)
         generated_ids_trimmed = [
             out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
         ]
