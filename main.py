@@ -49,15 +49,15 @@ prompt = """
 Please analyze the image and provide a detailed list of all measurable properties and specifications shown, including but not limited to:
 
 {
-length
-width
-height
-depth
-weight
-volume
-wattage
-maximum_weight_recommendation
-voltage
+    length
+    width
+    height
+    depth
+    weight
+    volume
+    wattage
+    maximum_weight_recommendation
+    voltage
 }
 Any numerical values or measurements displayed
 Any text or labels visible
@@ -119,4 +119,4 @@ for i in range(total_images):
             clean_up_tokenization_spaces=False
         )
 
-        print(output_text)
+        print(i, output_text)
