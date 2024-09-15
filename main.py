@@ -46,23 +46,25 @@ total_images = 2
 # """
 
 prompt = """
-Please analyze the image and provide a detailed list of all measurable properties and specifications shown, including but not limited to:
+Please analyze the image of the product and provide a detailed list of all measurable properties and specifications shown, 
+including but not limited to:
 
 {
-    length
-    width
-    height
-    depth
-    weight
-    volume
-    wattage
-    maximum_weight_recommendation
-    voltage
+  width (units cm)
+  height (units cm)
+  depth (units cm)
+  weight (units g)
+  volume (units ml)
+  wattage (units w)
+  maximum_weight_recommendation (units g)
+  voltage (units V)
 }
-Any numerical values or measurements displayed
-Any text or labels visible
 
-Please list each property with its corresponding value and unit of measurement where applicable. If any standard properties like voltage or wattage are not depicted, simply note that they are not shown in the image. Provide the output in a JSON-like format with key-value pairs. Use the exact keys specified below. Include the unit in the value string. If a specification is not visible or applicable, use 'N/A' as the value.
+Please use the exact keys specified above. For each property, 
+provide the value with the unit in parentheses (e.g., "width": "30 cm"). 
+If a specification is not visible or applicable, use "N/A" as the value.
+
+Provide the output in a JSON-like format with key-value pairs.
 """
 
 for i in range(total_images):
